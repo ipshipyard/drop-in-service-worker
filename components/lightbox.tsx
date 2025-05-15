@@ -74,7 +74,9 @@ export default function Lightbox({ images, currentIndex, onClose, onPrev, onNext
         </button>
 
         {/* Image counter */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black bg-opacity-50 px-3 py-1 rounded-full">
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black bg-opacity-50 px-3 py-1 text-center">
+          {images[currentIndex].alt}
+          <br />
           {currentIndex + 1} / {images.length}
         </div>
       </div>
