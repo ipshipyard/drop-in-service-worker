@@ -1,12 +1,14 @@
 /// <reference lib="webworker" /> // 
 // @ts-check
 /** @type {ServiceWorkerGlobalScope} */
+import { verifiedFetch } from 'https://esm.sh/@helia/verified-fetch'
+
 
 self.addEventListener("install", function (event) {
   console.log("Hello world from the Service Worker 🤙");
+
 });
 
-import { verifiedFetch } from 'https://esm.sh/@helia/verified-fetch'
 
 self.addEventListener('fetch', async (event) => {
   const url = event.request.url

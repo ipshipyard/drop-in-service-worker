@@ -3,7 +3,11 @@ import type { AppProps } from 'next/app'
 import { useServiceWorker } from '@/hooks/useServiceWorker'
 
 export default function App({ Component, pageProps }: AppProps) {
-  useServiceWorker()
+  const isInstalling = useServiceWorker()
+
+  if (isInstalling) {
+    return <div>Loading...</div>
+  }
 
   return <Component {...pageProps} />
 }
