@@ -6,8 +6,7 @@ self.addEventListener("install", function (event) {
   console.log("Hello world from the Service Worker 🤙");
 });
 
-
-import { verifiedFetch } from 'https://esm.sh/@helia/verified-fetch?bundle-deps'
+import { verifiedFetch } from 'https://esm.sh/@helia/verified-fetch'
 
 self.addEventListener('fetch', async (event) => {
   const url = event.request.url
@@ -15,13 +14,13 @@ self.addEventListener('fetch', async (event) => {
 
   if(!match) {
     // Not a request to an IPFS gateway, so we don't intercept it
-    console.log('Not a request to an IPFS gateway, so we don\'t intercept it')
+    console.log('Not a request to an IPFS gateway, so we don\'t intercept it', url)
     return
   }
   
-  console.log('Intercepting request to an IPFS Gateway with @helia/verified-fetch')
   const { protocol, cidOrPeerIdOrDnslink, path } = match.groups
 
+  console.log('Intercepting request to an IPFS Gateway with @helia/verified-fetch: ', cidOrPeerIdOrDnslink, path)
   event.respondWith(verifiedFetch(`${protocol}://${cidOrPeerIdOrDnslink}/${path}`))
 })
 
