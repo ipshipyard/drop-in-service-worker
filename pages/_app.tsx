@@ -1,6 +1,9 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import '@/styles/globals.css'
+import type { AppProps } from 'next/app'
+import { useServiceWorker } from '@/hooks/useServiceWorker'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  useServiceWorker()
+
+  return <Component {...pageProps} />
 }
