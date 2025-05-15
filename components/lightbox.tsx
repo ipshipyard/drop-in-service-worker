@@ -32,7 +32,7 @@ export default function Lightbox({ images, currentIndex, onClose, onPrev, onNext
   const currentImage = images[currentIndex]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
       <div className="relative w-full h-full flex items-center justify-center">
         {/* Close button */}
         <button
@@ -53,7 +53,7 @@ export default function Lightbox({ images, currentIndex, onClose, onPrev, onNext
         </button>
 
         {/* Image container */}
-        <div className="relative w-[90vw] h-[90vh]">
+        <div key={currentIndex} className="relative w-[90vw] h-[90vh] animate-fade-in">
           <Image
             src={currentImage.src || "/placeholder.svg"}
             alt={currentImage.alt}
