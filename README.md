@@ -29,6 +29,6 @@ The Service Worker is defined in [sw/sw.ts](sw/sw.ts), and is built in a separat
 
 ### Registration
 
-The Service Worker is registered in the [`useServiceWorker` hook](hooks/useServiceWorker.ts), and will be installed and activated [when the page loads](pages/_app.tsx).
+The Service Worker is registered in the [`useServiceWorker` hook](hooks/use-service-worker.ts), and will be installed and activated [when the page loads](pages/_app.tsx).
 
 To ensure that all IPFS Gateway requests are intercepted, rendering is blocked until the Service Worker is active.
