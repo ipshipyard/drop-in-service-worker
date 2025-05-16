@@ -5,26 +5,25 @@ export function useServiceWorker() {
 
   useEffect(() => {
     if (typeof window == 'undefined' || !('serviceWorker' in navigator)) {
-      console.error('Service worker not supported')
+      console.error('Service Worker is not supported by this browser')
       setIsInstalling(false)
       return
     }
 
-    // Register the service worker after event listeners are added
     navigator.serviceWorker
       .register('/sw.js', { type: 'module' })
       .then((registration) => {
         setIsInstalling(false)
         if (registration.installing) {
-          console.log('Service worker installing')
+          console.log('Service Worker installing')
         } else if (registration.waiting) {
-          console.log('Service worker installed')
+          console.log('Service Worker installed')
         } else if (registration.active) {
-          console.log('Service worker active')
+          console.log('Service Worker active')
         }
       })
       .catch((err) => {
-        console.error('Service worker registration failed', err)
+        console.error('Service Worker registration failed', err)
         setIsInstalling(false)
       })
   }, [])

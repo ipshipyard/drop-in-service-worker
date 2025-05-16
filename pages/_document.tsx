@@ -1,14 +1,11 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>IPFS Gateway Escape Gallery</title>
-
         <meta name="application-name" content="IPFS Gateway Escape Gallery" />
         <meta name="description" content="IPFS Gateway Escape Gallery" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <link rel="manifest" href="/manifest.json" />
       </Head>
@@ -17,5 +14,5 @@ export default function Document() {
         <NextScript />
       </body>
     </Html>
-  );
+  )
 }
