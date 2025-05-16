@@ -51,13 +51,3 @@ jobs:
           storacha-proof: ${{ secrets.STORACHA_PROOF }}
           github-token: ${{ github.token }}
           github-status-gw: 'dweb.link'
-
-      - name: Update repository website URL to latest IPFS CID
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.repos.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              homepage: "https://dweb.link/ipfs/${{ steps.deploy.outputs.cid }}"
-            });
