@@ -42,12 +42,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Upload static files as artifact
-        id: upload-artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ${{ env.BUILD_PATH }}
-
       - uses: ipfs/ipfs-deploy-action@status-gateway
         name: Deploy to IPFS
         id: deploy
@@ -57,19 +51,3 @@ jobs:
           storacha-proof: ${{ secrets.STORACHA_PROOF }}
           github-token: ${{ github.token }}
           github-status-gw: 'dweb.link'
-
-
-  gh-pages:
-    runs-on: 'ubuntu-latest'
-    needs: build-and-deploy
-    if: github.ref == 'refs/heads/main' # only deploy to gh-pages for main branch
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-    environment:
-      name: 'github-pages'
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
