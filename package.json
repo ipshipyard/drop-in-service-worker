@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack & npm run dev:sw",
     "dev:sw": "esbuild sw/sw.ts --watch --bundle --outfile=public/sw.js --sourcemap",
-    "build": "next build && npm run build:sw",
+    "build": "npm run build:sw && next build",
     "build:sw": "esbuild sw/sw.ts --bundle --outfile=public/sw.js --sourcemap",
     "start": "next start",
     "lint": "next lint"
