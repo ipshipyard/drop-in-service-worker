@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { useServiceWorker } from '@/hooks/useServiceWorker'
+import { useServiceWorker } from '@/hooks/use-service-worker'
 import Head from 'next/head'
 
 export default function App({ Component, pageProps }: AppProps) {
