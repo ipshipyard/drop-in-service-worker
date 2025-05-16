@@ -21,6 +21,8 @@ npm run build
 
 This will also build the Service Worker, which is output to `public/sw.js`.
 
+The output directory for the static site is `out`.
+
 ## Service Worker
 
 The Service Worker is defined in [sw/sw.ts](sw/sw.ts), and is built in a separate process using esbuild, because it's tricky getting an additional bundle without polluting Next.js config with custom Webpack config.
