@@ -1,32 +1,46 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
 export function useServiceWorker() {
-  const [isInstalling, setIsInstalling] = useState(true)
+  const [isInstalling, setIsInstalling] = useState(false)
+  const [isInstalled, setIsInstalled] = useState(false)
 
   useEffect(() => {
-    if (typeof window == 'undefined' || !('serviceWorker' in navigator)) {
+    if (typeof window === 'undefined' || !('serviceWorker' in navigator)) {
       console.error('Service Worker is not supported by this browser')
-      setIsInstalling(false)
       return
     }
 
-    navigator.serviceWorker
-      .register('/sw.js', { type: 'module' })
-      .then((registration) => {
-        setIsInstalling(false)
-        if (registration.installing) {
-          console.log('Service Worker installing')
-        } else if (registration.waiting) {
-          console.log('Service Worker installed')
-        } else if (registration.active) {
-          console.log('Service Worker active')
-        }
-      })
-      .catch((err) => {
-        console.error('Service Worker registration failed', err)
-        setIsInstalling(false)
-      })
+    // Check if service worker is already installed
+    navigator.serviceWorker.getRegistration().then((reg) => {
+      if (reg?.active) {
+        setIsInstalled(true)
+      }
+    })
   }, [])
 
-  return isInstalling
+  const install = useCallback(async () => {
+    if (typeof window === 'undefined' || !('serviceWorker' in navigator)) {
+      console.error('Service Worker is not supported by this browser')
+      return
+    }
+
+    try {
+      setIsInstalling(true)
+      const reg = await navigator.serviceWorker.register('/sw.js', { type: 'module' })
+      setIsInstalling(false)
+      setIsInstalled(true)
+      if (reg.installing) {
+        console.log('Service Worker installing')
+      } else if (reg.waiting) {
+        console.log('Service Worker installed')
+      } else if (reg.active) {
+        console.log('Service Worker active')
+      }
+    } catch (err) {
+      console.error('Service Worker registration failed', err)
+      setIsInstalling(false)
+    }
+  }, [])
+
+  return { isInstalling, isInstalled, install }
 }

@@ -1,15 +1,9 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { useServiceWorker } from '@/hooks/use-service-worker'
 import Head from 'next/head'
+import ServiceWorkerButton from '@/components/service-worker-button'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const isSWInstalling = useServiceWorker()
-
-  if (isSWInstalling) {
-    return <div>Loading...</div>
-  }
-
   return (
     <>
       <Head>
@@ -17,6 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Component {...pageProps} />
+      <ServiceWorkerButton />
     </>
   )
 }
