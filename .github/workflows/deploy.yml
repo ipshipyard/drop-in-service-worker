@@ -51,3 +51,11 @@ jobs:
           storacha-proof: ${{ secrets.STORACHA_PROOF }}
           github-token: ${{ github.token }}
           github-status-gw: 'dweb.link'
+
+      - name: Deploy main to Cloudflare Pages
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: pages deploy ${{ env.BUILD_PATH }} --project-name=drop-in-service-worker
