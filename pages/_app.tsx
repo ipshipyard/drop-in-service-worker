@@ -4,9 +4,13 @@ import { useServiceWorker } from '@/hooks/use-service-worker'
 import Head from 'next/head'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const isSWInstalling = useServiceWorker()
+  const { isSWActive, error } = useServiceWorker()
+  if (error != null) {
+    console.error(error)
+  }
 
-  if (isSWInstalling) {
+  if (!isSWActive) {
+    // block the page from rendering until the service worker is active
     return <div>Loading...</div>
   }
 
