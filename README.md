@@ -4,6 +4,8 @@ Replace centralized IPFS gateways with resilient and verified retrieval gateways
 
 This example shows how to use a Service Worker to intercept requests to centralized IPFS gateways and retrieve content directly from providers (or self-hosted gateways) with [@helia/verified-fetch](https://www.npmjs.com/package/@helia/verified-fetch).
 
+For more information, check out the [deep dive video on YouTube](https://www.youtube.com/watch?v=qtIJXRgxjVA&ab_channel=IPFS).
+
 ## Running
 
 ```bash
