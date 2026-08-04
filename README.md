@@ -1,3 +1,12 @@
+> [!IMPORTANT]
+> **This project is no longer maintained.**
+>
+> The code still works, but it pins an old [@helia/verified-fetch](https://www.npmjs.com/package/@helia/verified-fetch) and will not be updated.
+>
+> If you are moving an application off public gateways, calling `@helia/verified-fetch` directly is usually the better starting point. [Replace public gateways with self-hosted IPFS](https://docs.ipfs.tech/how-to/replace-public-gateways-with-self-hosted-ipfs/) covers that path and the backend options alongside it.
+>
+> The repository can be unarchived, but only for a named maintainer who commits to keeping it up. If that is you, reach out to the [IPFS Foundation](https://ipfsfoundation.org/about/).
+
 # IPFS Drop-in Service Worker Example
 
 Replace centralized IPFS gateways with resilient and verified retrieval gateways or providers with [@helia/verified-fetch](https://www.npmjs.com/package/@helia/verified-fetch) in a drop-in Service Worker.
